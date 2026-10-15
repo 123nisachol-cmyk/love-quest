@@ -3,465 +3,501 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LOVE QUEST — ลูกพี่ไทเท~</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Quest 💗</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Itim&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
 :root {
-  --pink:#ff8fba;
-  --light:#fff0f6;
-  --deep:#d94c88;
-  --ink:#59354b;
-  --cream:#fffaf2;
+  --pink: #ff8eb5;
+  --light: #fff0f6;
+  --dark: #713b59;
+  --purple: #d9b9ff;
 }
-* { box-sizing:border-box; }
+
+* { box-sizing: border-box; }
+
 body {
-  margin:0;
-  background:#ffe7f0;
-  color:var(--ink);
-  font-family:'Itim',cursive;
-  text-align:center;
-  min-height:100vh;
-  padding:18px 12px 40px;
-  background-image:radial-gradient(#ffb8d3 1.5px,transparent 1.5px);
-  background-size:20px 20px;
+  margin: 0;
+  min-height: 100vh;
+  background: #ffeaf3;
+  color: var(--dark);
+  font-family: 'Itim', cursive;
+  text-align: center;
+  background-image: radial-gradient(#ffc0d8 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
 }
-.wrap { max-width:520px; margin:auto; }
-header { padding:10px 4px; }
-.pixel-title {
-  font-family:'Press Start 2P',monospace;
-  font-size:clamp(17px,4.5vw,24px);
-  color:#d94c88;
-  line-height:1.8;
-  text-shadow:2px 2px #fff;
-}
-.subtitle { font-size:19px; margin:7px; }
-.card {
-  background:var(--cream);
-  border:3px solid #59354b;
-  border-radius:14px;
-  box-shadow:5px 5px 0 #d77ca3;
-  padding:22px 16px;
-  margin:16px 0;
-}
-.pixel-label {
-  font-family:'Press Start 2P',monospace;
-  font-size:10px;
-  color:#d94c88;
-  line-height:2;
-  margin:0 0 14px;
-}
-h2 { font-size:27px; margin:8px 0 14px; }
-p { font-size:20px; line-height:1.65; }
+
 button {
-  font-family:'Itim',cursive;
-  font-size:20px;
-  border:2px solid var(--ink);
-  border-radius:9px;
-  background:#ffb2d0;
-  color:var(--ink);
-  padding:11px 17px;
-  box-shadow:3px 3px 0 var(--ink);
-  cursor:pointer;
-  margin:6px;
-  transition:transform .12s;
+  font-family: inherit;
+  font-size: 19px;
+  cursor: pointer;
+  color: var(--dark);
+  background: #fff;
+  border: 3px solid var(--dark);
+  border-radius: 12px;
+  padding: 10px 18px;
+  box-shadow: 0 5px 0 #d68ba9;
+  transition: transform .12s;
 }
+
 button:active {
-  transform:translate(2px,2px);
-  box-shadow:1px 1px 0 var(--ink);
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #d68ba9;
 }
-button:disabled { opacity:.45; cursor:default; }
-.primary { background:#ff80b3; }
-.hidden { display:none !important; }
+
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+header {
+  padding: 22px 12px 5px;
+}
+
+h1 {
+  font-size: clamp(28px, 6vw, 42px);
+  margin: 0;
+  text-shadow: 2px 2px white;
+}
+
+.subtitle { margin: 8px 0; }
+
+#game {
+  width: min(92%, 560px);
+  margin: 16px auto 170px;
+  padding: 22px 16px;
+  background: rgba(255,255,255,.94);
+  border: 4px solid var(--pink);
+  border-radius: 18px;
+  box-shadow: 0 8px 0 #e8a1be;
+}
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+.pixel {
+  font-size: 54px;
+  margin: 12px;
+  image-rendering: pixelated;
+}
+
 .progress {
-  display:flex;
-  justify-content:center;
-  gap:7px;
-  margin:10px 0 18px;
+  height: 17px;
+  background: #ffe1ec;
+  border: 2px solid var(--dark);
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 15px 0;
 }
-.dot {
-  width:26px;
-  height:26px;
-  border:2px solid var(--ink);
-  border-radius:7px;
-  background:#fff;
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: var(--pink);
+  transition: width .2s;
 }
-.dot.done { background:#ff80b3; }
-.hero { font-size:65px; line-height:1.4; }
-.small { font-size:16px; }
+
 #heartField {
-  position:relative;
-  height:260px;
-  overflow:hidden;
-  background:#fff0f6;
-  border:2px dashed #d94c88;
-  border-radius:12px;
-  margin:15px 0;
-  touch-action:manipulation;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 9px;
+  margin: 20px 0;
 }
+
 .heart {
-  position:absolute;
-  border:0;
-  background:transparent;
-  box-shadow:none;
-  padding:0;
-  margin:0;
-  font-size:34px;
-  line-height:1;
-  animation:bob .8s ease-in-out infinite alternate;
+  padding: 7px 0;
+  box-shadow: none;
+  border: 2px dashed #ff8eb5;
+  background: #fff0f6;
+  font-size: 28px;
+  min-width: 0;
 }
-@keyframes bob {
-  to { transform:translateY(-7px) rotate(8deg); }
+
+.heart:active { box-shadow: none; }
+
+.photo-frame {
+  padding: 8px;
+  margin: 15px auto;
+  width: min(100%, 350px);
+  background: #fff0f6;
+  border: 4px dashed var(--pink);
+  border-radius: 16px;
+  transform: rotate(-1deg);
 }
-#puzzle {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:4px;
-  width:min(100%,330px);
-  aspect-ratio:1;
-  margin:15px auto;
-  border:3px solid var(--ink);
-  background:var(--ink);
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  max-height: 430px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #ffe3ef;
 }
-.piece {
-  min-width:0;
-  margin:0;
-  padding:0;
-  border-radius:0;
-  border:0;
-  box-shadow:none;
-  aspect-ratio:1;
-  background-color:#ffc7dc;
-  background-image:url('1000006847.jpg');
-  background-repeat:no-repeat;
-  background-size:300% 300%;
-  position:relative;
-  overflow:hidden;
+
+.caption {
+  background: #fff3b8;
+  padding: 12px;
+  margin: 14px 0;
+  border: 2px solid #d7b65d;
+  border-radius: 12px;
+  font-size: 21px;
 }
-.piece.selected {
-  outline:4px solid #ff2d87;
-  outline-offset:-4px;
-  filter:brightness(1.1);
-}
-.piece::after {
-  content:attr(data-n);
-  position:absolute;
-  right:3px;
-  bottom:2px;
-  background:#fff9;
-  color:#59354b;
-  border-radius:4px;
-  font-size:12px;
-  padding:0 4px;
-}
+
 .boxes {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  margin: 24px 0;
 }
-.box-choice {
-  margin:0;
-  padding:12px 3px;
-  min-width:0;
-  font-size:17px;
-  min-height:130px;
+
+.mystery {
+  background: #f4e8ff;
+  border-color: #9b70c6;
+  box-shadow: 0 5px 0 #b69ad2;
+  padding: 12px 4px;
+  font-size: 15px;
+  min-width: 0;
 }
-.box-choice span {
-  display:block;
-  font-size:43px;
-  margin-bottom:7px;
+
+.mystery span {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 8px;
 }
-.photo {
-  width:min(100%,310px);
-  max-height:340px;
-  object-fit:contain;
-  border:3px solid var(--ink);
-  border-radius:10px;
-  background:#fff0f6;
+
+#boxResult {
+  margin: 14px 0;
+  font-size: 21px;
+  min-height: 45px;
 }
-.music { margin:12px auto 0; max-width:100%; overflow:hidden; }
-.music iframe { width:100%; height:85px; border:0; border-radius:10px; }
-.footer { font-size:14px; opacity:.8; margin-top:22px; }
-#toast { min-height:27px; font-size:18px; color:#c13c7a; }
-@media(max-width:370px) {
-  .card { padding:18px 10px; }
-  .boxes { gap:5px; }
-  .box-choice { font-size:15px; }
-  button { font-size:18px; padding:10px 12px; }
+
+.letter {
+  background: #fff7fb;
+  border: 3px dashed #ff9fc2;
+  border-radius: 14px;
+  padding: 17px 14px;
+  text-align: left;
+  font-size: 19px;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+#noMessage {
+  display: none;
+  background: #fff0f6;
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 18px;
+  font-size: 22px;
+}
+
+#yesMessage {
+  display: none;
+  margin-top: 20px;
+  font-size: 26px;
+  background: #ffe4ef;
+  padding: 20px 12px;
+  border-radius: 14px;
+  border: 3px solid var(--pink);
+}
+
+.small { font-size: 15px; opacity: .85; }
+
+#musicPlayer {
+  position: fixed;
+  z-index: 100;
+  bottom: 10px;
+  right: 10px;
+  width: 205px;
+  padding: 7px;
+  background: #fff0f6;
+  border: 3px solid var(--pink);
+  border-radius: 13px;
+  box-shadow: 0 4px 0 #e8a1be;
+}
+
+#musicPlayer p {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+#musicPlayer iframe {
+  display: block;
+  width: 100%;
+  height: 92px;
+  border: 0;
+  border-radius: 8px;
+}
+
+@media (max-width: 420px) {
+  #game { padding: 17px 11px; }
+  #musicPlayer { width: 175px; }
+  #musicPlayer iframe { height: 82px; }
+  .mystery { font-size: 14px; }
 }
 </style>
 </head>
-<body>
-<div class="wrap">
 
+<body>
 <header>
-  <div class="pixel-title">LOVE QUEST</div>
-  <div class="subtitle">♡ ภารกิจง้อหัวใจ ♡</div>
-  <div class="pixel-title" style="font-size:13px">TO: ลูกพี่ไทเท~</div>
+  <h1>💗 LOVE QUEST 💗</h1>
+  <p class="subtitle">ภารกิจง้อคุณลูกพี่ไทเท~</p>
 </header>
 
-<div class="progress">
-  <div class="dot" id="d1"></div>
-  <div class="dot" id="d2"></div>
-  <div class="dot" id="d3"></div>
-  <div class="dot" id="d4"></div>
-</div>
+<main id="game">
 
-<!-- หน้าเริ่มเกม -->
-<section class="card" id="stage0">
-  <div class="hero">🩷🎮🩷</div>
-  <div class="pixel-label">PLAYER 1 : MY BABY</div>
-  <h2>ถึงลูกพี่ไทเท~</h2>
-  <p>มีภารกิจลับให้ทำด้วยแหละ<br>
-  ถ้าทำสำเร็จอาจจะได้รางวัลพิเศษนะ! ♡</p>
-  <button class="primary" onclick="go(1)">เริ่มภารกิจ ▶</button>
+  <!-- START -->
+  <section class="screen active" id="stage0">
+    <div class="pixel">💌</div>
+    <h2>มีภารกิจด่วนมาส่งค้าบ!</h2>
+    <p>ถึงคุณลูกพี่ไทเทคนเดียวเท่านั้น</p>
+    <p>ถ้าอยากรู้ว่าเค้ามีอะไรจะบอก<br>ก็เข้ามาเล่นก่อนน้าา</p>
+    <button onclick="goTo(1)">เริ่มภารกิจ ▶</button>
+  </section>
 
-  <div class="music">
-    <p class="small">🎵 เพลงประกอบ: PUN — Living Death</p>
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/X_nKROar67Y?playsinline=1&rel=0"
-      title="PUN Living Death"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
-    </iframe>
-  </div>
-</section>
-
-<!-- ด่าน 1 เก็บหัวใจ -->
-<section class="card hidden" id="stage1">
-  <div class="pixel-label">STAGE 01 / HEART HUNTER</div>
-  <h2>เก็บหัวใจให้ครบ 10 ดวง!</h2>
-  <p>แตะหัวใจที่ลอยอยู่ให้ครบ แล้วความลับจะถูกปลดล็อก 💗</p>
-  <div>หัวใจ: <b id="score">0</b> / 10</div>
-  <div id="heartField"></div>
-  <div id="toast"></div>
-  <button class="primary" id="heartNext" disabled onclick="go(2)">
-    ปลดล็อกด่านต่อไป 🔓
-  </button>
-</section>
-
-<!-- ด่าน 2 จิ๊กซอว์ -->
-<section class="card hidden" id="stage2">
-  <div class="pixel-label">STAGE 02 / MEMORY PUZZLE</div>
-  <h2>ต่อรูปคนหล่อให้สำเร็จ 🧩</h2>
-  <p>แตะชิ้นส่วน 2 ชิ้นเพื่อสลับตำแหน่งกัน ต่อให้รูปกลับมาเหมือนเดิมนะ!</p>
-  <div id="puzzle"></div>
-  <div id="puzzleStatus">ต่อให้ถูกทั้ง 9 ช่องเลย!</div>
-  <button onclick="shufflePuzzle()">สับชิ้นส่วนใหม่ ↻</button>
-  <button class="primary" id="puzzleNext" disabled onclick="go(3)">
-    ผ่านด่านแล้ว ♡
-  </button>
-  <p class="small">* อย่าลืมเก็บไฟล์รูปไว้ใน Repository ด้วยนะ</p>
-</section>
-
-<!-- ด่าน 3 เลือกกล่อง -->
-<section class="card hidden" id="stage3">
-  <div class="pixel-label">STAGE 03 / MYSTERY BOX</div>
-  <h2>เลือกกล่องของขวัญ 🎁</h2>
-  <p>อยากรู้ใช่มั้ยว่าข้างในมีอะไร...</p>
-
-  <div class="boxes">
-    <button class="box-choice" onclick="openBox(1)">
-      <span>🎁</span>กล่องที่ 1
+  <!-- STAGE 1: HEARTS -->
+  <section class="screen" id="stage1">
+    <h2>ด่าน 1: เก็บหัวใจให้เค้าหน่อย 💕</h2>
+    <p>เก็บหัวใจให้ครบ 10 ดวง เพื่อปลดล็อกความลับ!</p>
+    <div class="progress"><div id="progressBar"></div></div>
+    <p id="heartCount">เก็บแล้ว 0 / 10 ดวง</p>
+    <div id="heartField"></div>
+    <p id="heartHint" class="small">จิ้มหัวใจได้เลยย 💗</p>
+    <button id="heartNext" disabled onclick="goTo(2)">
+      ยังไม่ครบเลย!
     </button>
-    <button class="box-choice" onclick="openBox(2)">
-      <span>🎀</span>กล่องที่ 2
+  </section>
+
+  <!-- STAGE 2: PHOTO & TEASING -->
+  <section class="screen" id="stage2">
+    <h2>ด่าน 2: แฟ้มลับคนหน้าบึ้ง 📸</h2>
+    <p>หลักฐานชิ้นสำคัญของคดีนี้...</p>
+
+    <div class="photo-frame">
+      <img
+        src="1000006847.jpg"
+        alt="รูปคุณลูกพี่ไทเท"
+        onerror="this.style.display='none'; document.getElementById('photoError').style.display='block';"
+      >
+      <div id="photoError" style="display:none;padding:25px">
+        🥹 รูปยังไม่ขึ้นค้าบ<br>
+        เช็กว่ามีไฟล์ 1000006847.jpg<br>
+        อยู่ใน Repository เดียวกับ index.html น้า
+      </div>
+    </div>
+
+    <div class="caption" id="teaseCaption">
+      หน้าบึ้งเยอะระวังแก่ก้าน้าา 🤏🏻
+    </div>
+
+    <button onclick="nextTease()">เปิดหลักฐานถัดไป 🤭</button>
+    <p class="small" id="teaseCount">หลักฐาน 1 / 4</p>
+    <br><br>
+    <button onclick="goTo(3)">ไปเปิดกล่องความลับ 🎁</button>
+  </section>
+
+  <!-- STAGE 3: MYSTERY BOXES -->
+  <section class="screen" id="stage3">
+    <h2>ด่าน 3: เลือกกล่องให้ถูกใจ 🎁</h2>
+    <p>ลูกพี่จะได้เจอข้อความอะไรน้าา</p>
+
+    <div class="boxes">
+      <button class="mystery" onclick="openBox(0)">
+        <span>🎁</span>กล่องที่ 1
+      </button>
+      <button class="mystery" onclick="openBox(1)">
+        <span>🎀</span>กล่องที่ 2
+      </button>
+      <button class="mystery" onclick="openBox(2)">
+        <span>💝</span>กล่องที่ 3
+      </button>
+    </div>
+
+    <div id="boxResult">เลือกมา 1 กล่องสิค้าบ 👀</div>
+    <button id="boxNext" style="display:none" onclick="goTo(4)">
+      ไปต่อได้แล้วว 💌
     </button>
-    <button class="box-choice" onclick="openBox(3)">
-      <span>💌</span>กล่องลับ
-    </button>
-  </div>
+  </section>
 
-  <div id="boxMessage" class="hidden">
-    <div class="hero" id="boxEmoji">💗</div>
-    <h2 id="boxTitle"></h2>
-    <p id="boxText"></p>
-    <button class="primary" id="boxNext" onclick="go(4)">
-      ไปดูความลับสุดท้าย 💌
-    </button>
-  </div>
-</section>
+  <!-- STAGE 4: APOLOGY -->
+  <section class="screen" id="stage4">
+    <div class="pixel">🥺💗</div>
+    <h2>ถึงคุณลูกพี่ไทเท~</h2>
 
-<!-- ด่าน 4 ข้อความง้อ -->
-<section class="card hidden" id="stage4">
-  <div class="pixel-label">FINAL STAGE / MY HEART</div>
-  <div class="hero">💗🥺💗</div>
-  <h2>ถึงลูกพี่ไทเท~</h2>
+    <div class="letter">ส่งมาง้อนะะ จะบอกว่าขอโต๊ดดด คืนดีกันน้าา หายโกรธเค้าได้เเย้ววว คิดถึงจะเเย่
 
-  <img class="photo"
-       src="1000006847.jpg"
-       alt="รูปความทรงจำของเรา"
-       onerror="this.style.display='none'">
+ขอโทษที่ไม่ค่อยใส่ใจหรือทำอะไรให้พิเศษในวันสำคัญนะ เค้าจะตั้งใจกับความสัมพันธ์เรามากขึ้นนะะ
 
-  <p style="text-align:left">
-    ส่งมาง้อนะะ 💌🥺<br><br>
-    จะบอกว่าขอโต๊ดดดด 🥹💗<br>
-    คืนดีกันน้าา หายโกรธเค้าได้แย้ววว<br>
-    คิดถึงจะเเย่แย้วววว 🥺💕<br><br>
-    ขอโทษที่ไม่ค่อยใส่ใจหรือทำอะไรให้พิเศษ
-    ในวันสำคัญนะะ เค้าจะตั้งใจกับความสัมพันธ์
-    ของเรามากขึ้นนะะ 💖<br><br>
-    รักนะจุ๊บบบบบบ มั๊วะะะะ 😘💋💗
-  </p>
+รักนะจุ๊บบบบบบมั๊วะะะ 💗</div>
 
-  <h2>หายงอนเค้าได้มั้ยค้าบบบ 🥺</h2>
-  <button onclick="sayNo()">ไม่ 😾</button>
-  <button class="primary" onclick="sayYes()">ตอบรับ 💗</button>
-  <div id="answer" style="margin-top:18px;font-size:23px;line-height:1.6"></div>
-</section>
+    <p>แล้วจะยอมคืนดีกับเค้ามั้ยค้าบบบ 🥹</p>
 
-<div class="footer">MADE WITH ♡ JUST FOR YOU</div>
+    <div class="buttons">
+      <button onclick="sayNo()">ไม่ 😤</button>
+      <button onclick="sayYes()">ตอบรับ 💗</button>
+    </div>
+
+    <div id="noMessage">
+      ม่ายด้ายน้า ใจป๋มสลายคับมุงงง 😭💔<br>
+      <button style="margin-top:12px" onclick="sayYes()">
+        โอ๋ ๆ ยอมคืนดีก็ได้ 💗
+      </button>
+    </div>
+
+    <div id="yesMessage">
+      แยะะ คุณน่ารักจังงง 🥰💋<br>
+      <span style="font-size:20px">รักคุณลูกพี่ไทเทที่สุดเลยย</span>
+      <div class="pixel">💗🐻💗</div>
+      <button onclick="restartGame()">เล่นใหม่อีกครั้ง ↻</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- MUSIC PLAYER: อยู่ภายนอกทุกด่าน จะไม่รีโหลดเมื่อเปลี่ยนด่าน -->
+<div id="musicPlayer">
+  <p>🎵 PUN — Living Death</p>
+  <iframe
+    id="loveSong"
+    src="https://www.youtube-nocookie.com/embed/X_nKROar67Y?playsinline=1&rel=0"
+    title="PUN - Living Death"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
 </div>
 
 <script>
 let hearts = 0;
-let selected = null;
-let tiles = [];
+let teaseIndex = 0;
 
-function go(n) {
-  document.querySelectorAll('[id^="stage"]').forEach(el => {
-    el.classList.add('hidden');
+const teases = [
+  "หน้าบึ้งเยอะระวังแก่ก้าน้าา 🤏🏻",
+  "คนอะไรดื้อก็ที่หนึ่ง แต่ก็รักอยู่ดีแหละ",
+  "ดูหน้าก่อนนน ใครงอนใครกันแน่ 😂",
+  "หลักฐานชัดขนาดนี้ ยังจะเถียงอีกมั้ยค้าบ"
+];
+
+function goTo(number) {
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
   });
-  document.getElementById('stage' + n).classList.remove('hidden');
-
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById('d' + i).classList.toggle('done', i <= n);
-  }
-
-  if (n === 1 && hearts === 0) spawnHearts();
-  window.scrollTo({ top:0, behavior:'smooth' });
+  document.getElementById('stage' + number).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function spawnHearts() {
+function setupHearts() {
   const field = document.getElementById('heartField');
   field.innerHTML = '';
 
   for (let i = 0; i < 15; i++) {
-    const b = document.createElement('button');
-    b.className = 'heart';
-    b.textContent = ['💗','💖','💕','💘'][i % 4];
-    b.style.left = (3 + Math.random() * 82) + '%';
-    b.style.top = (4 + Math.random() * 78) + '%';
-    b.style.animationDelay = (Math.random() * .8) + 's';
+    const button = document.createElement('button');
+    button.className = 'heart';
+    button.textContent = ['💗','💖','💕','💘','💓'][i % 5];
 
-    b.onclick = () => {
-      if (b.disabled) return;
-      b.disabled = true;
-      b.style.opacity = '.15';
-      b.style.pointerEvents = 'none';
+    button.addEventListener('click', () => {
+      if (button.disabled) return;
 
-      hearts++;
-      document.getElementById('score').textContent = hearts;
+      button.disabled = true;
+      button.textContent = '✨';
+      hearts = Math.min(10, hearts + 1);
+
+      document.getElementById('heartCount').textContent =
+        `เก็บแล้ว ${hearts} / 10 ดวง`;
+
+      document.getElementById('progressBar').style.width =
+        (hearts * 10) + '%';
 
       if (hearts >= 10) {
-        document.getElementById('heartNext').disabled = false;
-        document.getElementById('toast').textContent =
-          'เก่งมากกก ปลดล็อกแล้ว! 🔓';
-        field.querySelectorAll('button').forEach(x => x.disabled = true);
-      }
-    };
+        document.getElementById('heartHint').textContent =
+          'เย้ เก่งมากกก ปลดล็อกความลับได้แล้ว! 🎉';
 
-    field.appendChild(b);
+        document.getElementById('heartNext').disabled = false;
+        document.getElementById('heartNext').textContent =
+          'ไปดูแฟ้มลับต่อ ▶';
+      }
+    });
+
+    field.appendChild(button);
   }
 }
 
-function shufflePuzzle() {
-  tiles = [0,1,2,3,4,5,6,7,8];
+function nextTease() {
+  teaseIndex = (teaseIndex + 1) % teases.length;
 
-  do {
-    for (let i = tiles.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-    }
-  } while (tiles.every((v, i) => v === i));
+  document.getElementById('teaseCaption').textContent =
+    teases[teaseIndex];
 
-  selected = null;
-  document.getElementById('puzzleNext').disabled = true;
-  document.getElementById('puzzleStatus').textContent =
-    'แตะชิ้นส่วน 2 ชิ้นเพื่อสลับตำแหน่ง';
-  renderPuzzle();
+  document.getElementById('teaseCount').textContent =
+    `หลักฐาน ${teaseIndex + 1} / ${teases.length}`;
 }
 
-function renderPuzzle() {
-  const root = document.getElementById('puzzle');
-  root.innerHTML = '';
+function openBox(index) {
+  const messages = [
+    'รักนะไทเทท 💗 กล่องนี้มีความรักเต็มไปหมดเลยย',
+    'หน้าบึ้งเยอะระวังแก่ก้าน้าา 😂 เตือนด้วยความหวังดี',
+    'แอบมีคนอยากง้ออยู่ตรงนี้ไงง 🥺💌'
+  ];
 
-  tiles.forEach((tile, pos) => {
-    const b = document.createElement('button');
-    b.className = 'piece' + (selected === pos ? ' selected' : '');
+  document.getElementById('boxResult').textContent = messages[index];
+  document.getElementById('boxNext').style.display = 'inline-block';
 
-    const col = tile % 3;
-    const row = Math.floor(tile / 3);
-    b.style.backgroundPosition = (col * 50) + '% ' + (row * 50) + '%';
-    b.dataset.n = tile + 1;
-    b.setAttribute('aria-label', 'ชิ้นส่วน ' + (tile + 1));
-
-    b.onclick = () => {
-      if (selected === null) {
-        selected = pos;
-        renderPuzzle();
-        return;
-      }
-
-      if (selected === pos) {
-        selected = null;
-        renderPuzzle();
-        return;
-      }
-
-      [tiles[selected], tiles[pos]] = [tiles[pos], tiles[selected]];
-      selected = null;
-      renderPuzzle();
-
-      if (tiles.every((v, i) => v === i)) {
-        document.getElementById('puzzleStatus').textContent =
-          'เย้! ต่อสำเร็จแล้ว เก่งที่สุดเลย 💖';
-        document.getElementById('puzzleNext').disabled = false;
-      }
-    };
-
-    root.appendChild(b);
+  document.querySelectorAll('.mystery').forEach((button, i) => {
+    button.disabled = true;
+    if (i === index) button.querySelector('span').textContent = '💖';
   });
 }
 
-function openBox(n) {
-  document.getElementById('boxMessage').classList.remove('hidden');
-
-  const title = document.getElementById('boxTitle');
-  const text = document.getElementById('boxText');
-  const emoji = document.getElementById('boxEmoji');
-
-  if (n === 1) {
-    emoji.textContent = '💗';
-    title.textContent = 'รักนะไทเทท';
-    text.textContent = 'อันนี้ของจริงจากใจ ไม่ได้แกล้งงง 💕';
-  } else if (n === 2) {
-    emoji.textContent = '😾';
-    title.textContent = 'หน้าบึ้งเยอะระวังแก่ก้าน้าา';
-    text.textContent = 'ยิ้มหน่อยยย เดี๋ยวไม่หล่อไม่รู้ด้วยนะ!';
-  } else {
-    emoji.textContent = '💌';
-    title.textContent = 'กล่องลับของคนพิเศษ';
-    text.textContent = 'มีข้อความสำคัญซ่อนอยู่... เปิดอ่านในด่านสุดท้ายได้เลยนะ 🥺';
-  }
-
-  document.getElementById('boxNext').textContent =
-    n === 3 ? 'เปิดข้อความลับ 💌' : 'ไปต่อด่านสุดท้าย 💗';
-}
-
 function sayNo() {
-  document.getElementById('answer').innerHTML =
-    'ม่ายด้ายน้า ใจป๋มสลายคับมุงงง 😭💔<br>🥺👉👈';
+  document.getElementById('noMessage').style.display = 'block';
+  document.getElementById('yesMessage').style.display = 'none';
 }
 
 function sayYes() {
-  document.getElementById('answer').innerHTML =
-    'แยะะ คุณน่ารักจังงง 🥹💗<br>กอดทีนึงงง 🫂💕';
+  document.getElementById('noMessage').style.display = 'none';
+  document.getElementById('yesMessage').style.display = 'block';
 }
 
-shufflePuzzle();
+function restartGame() {
+  hearts = 0;
+  teaseIndex = 0;
+
+  document.getElementById('heartCount').textContent = 'เก็บแล้ว 0 / 10 ดวง';
+  document.getElementById('progressBar').style.width = '0%';
+  document.getElementById('heartHint').textContent = 'จิ้มหัวใจได้เลยย 💗';
+  document.getElementById('heartNext').disabled = true;
+  document.getElementById('heartNext').textContent = 'ยังไม่ครบเลย!';
+
+  document.getElementById('teaseCaption').textContent = teases[0];
+  document.getElementById('teaseCount').textContent = 'หลักฐาน 1 / 4';
+
+  document.getElementById('boxResult').textContent = 'เลือกมา 1 กล่องสิค้าบ 👀';
+  document.getElementById('boxNext').style.display = 'none';
+
+  document.querySelectorAll('.mystery').forEach((button, i) => {
+    button.disabled = false;
+    button.querySelector('span').textContent = ['🎁','🎀','💝'][i];
+  });
+
+  document.getElementById('noMessage').style.display = 'none';
+  document.getElementById('yesMessage').style.display = 'none';
+
+  setupHearts();
+  goTo(0);
+}
+
+setupHearts();
 </script>
 </body>
 </html>
