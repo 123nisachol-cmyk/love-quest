@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe6ef">
+<title>ภารกิจง้อหัวใจ 💗</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Itim&family=Press+Start+2P&display=swap');
+  :root{--pink:#ff8fba;--deep:#d94f88;--cream:#fff8f2;--ink:#53384b;--mint:#c8f5dc;--yellow:#ffe78b}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:#ffe8f0;color:var(--ink);font-family:'Itim',system-ui,sans-serif;overflow-x:hidden}
+  body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.2;background-image:radial-gradient(#e56b9e 1px,transparent 1px);background-size:18px 18px}
+  button{font:inherit;cursor:pointer;border:0}
+  .wrap{width:min(100% - 28px,520px);margin:0 auto;padding:22px 0 42px;position:relative}
+  .top{display:flex;justify-content:space-between;align-items:center;font-size:14px;margin-bottom:14px}
+  .pixel{font-family:'Press Start 2P',monospace;font-size:9px;line-height:1.8;letter-spacing:.2px}
+  .tag{background:#fff;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:7px 9px;border-radius:3px}
+  .panel{background:var(--cream);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);border-radius:8px;padding:23px 18px;margin:0 0 20px;position:relative}
+  h1{font-size:clamp(27px,7vw,38px);line-height:1.2;margin:8px 0 12px;color:var(--deep);text-align:center}
+  h2{font-size:24px;margin:4px 0 12px;text-align:center}
+  p{font-size:19px;line-height:1.65;margin:10px 0}
+  .center{text-align:center}
+  .sub{font-size:16px;opacity:.85}
+  .pixel-art{font-size:56px;text-align:center;line-height:1.5;filter:drop-shadow(3px 3px 0 #ffc0d8);margin:10px 0}
+  .btn{background:var(--pink);color:#492b3d;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);border-radius:5px;padding:12px 16px;font-weight:bold;font-size:19px;transition:transform .12s,box-shadow .12s}
+  .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.secondary{background:#fff}
+  .btn.mint{background:var(--mint)}
+  .btnrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .progress{height:14px;border:2px solid var(--ink);background:white;margin:14px 0 20px;padding:2px}
+  .bar{height:100%;width:0;background:repeating-linear-gradient(90deg,#ff8fba 0 12px,#ffc0d8 12px 16px);transition:width .3s}
+  .hearts{display:flex;justify-content:center;gap:10px;margin:12px 0}
+  .heart{font-size:28px;filter:grayscale(1);opacity:.35;transition:.2s}
+  .heart.on{filter:none;opacity:1;transform:scale(1.15)}
+  .quest{background:#fff;border:2px dashed #e98bb1;border-radius:6px;padding:12px;margin:10px 0;text-align:left;font-size:18px}
+  .quest button{background:none;color:var(--deep);font-size:20px;font-weight:bold;padding:0 8px}
+  .hidden{display:none!important}
+  .letter{background:#fff;border:2px dashed #ef91b8;border-radius:8px;padding:18px 15px;margin-top:15px}
+  .letter p{font-size:20px}
+  .tiny{font-size:12px;line-height:1.7;opacity:.75;text-align:center;margin-top:18px}
+  .float{position:fixed;pointer-events:none;z-index:5;animation:rise 2.3s ease-out forwards;font-size:24px}
+  @keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:1}100%{transform:translateY(-180px) rotate(18deg) scale(1.3);opacity:0}}
+  .sprite{display:inline-block;animation:bob 1.2s steps(2,end) infinite}
+  @keyframes bob{50%{transform:translateY(-5px)}}
+  .ending{background:#fff0f6;border:2px solid var(--deep);padding:15px;border-radius:8px}
+  .left{text-align:left}
+  .photo-frame{background:#fff;padding:8px;border:3px solid var(--ink);box-shadow:4px 4px 0 #f3a2c3;border-radius:5px;margin:15px auto;max-width:420px}
+  .photo-frame img{display:block;width:100%;height:auto;border-radius:2px}
+  .video-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border:2px solid var(--ink);border-radius:6px;background:#f6c3d7}
+  .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .music-panel{padding:16px}
+  .music-panel p{margin:7px 0}
+  a{color:var(--deep)}
+  @media(min-width:480px){.panel{padding:28px 26px}.wrap{padding-top:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span class="pixel">LOVE QUEST</span><span class="tag pixel">PLAYER 1 ♡ PLAYER 2</span></div>
+  <div class="panel music-panel">
+    <div class="pixel center">BGM ♫</div>
+    <p class="center"><b>เพลงประกอบภารกิจ: PUN — Living Death 🎧</b></p>
+    <p class="sub center">กดเล่นเพลงก่อนเริ่มเกมได้น้า (มือถืออาจไม่อนุญาตให้เปิดเพลงเองอัตโนมัติ)</p>
+    <div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/X_nKROar67Y?playsinline=1&rel=0" title="PUN - Living Death" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  </div>
+  <div class="panel center" id="screen1">
+    <div class="pixel">★ SPECIAL MISSION ★</div>
+    <div class="pixel-art"><span class="sprite">🕹️</span> 💗 <span class="sprite">🐻</span></div>
+    <h1>ภารกิจง้อหัวใจ!</h1>
+    <p>ถึง <b>ลูกพี่ไทเท~</b> คนเก่งงง</p>
+    <p class="sub">มีคนตัวจิ๋วคนนึงอยากขอเข้าไปในหัวใจ<br>ขออนุญาตเริ่มภารกิจได้มั้ยค้าบบ</p>
+    <div class="progress"><div class="bar" id="bar1"></div></div>
+    <button class="btn" onclick="startGame()">เริ่มภารกิจ ▶</button>
+    <p class="tiny">คำเตือน: เกมนี้มีความน่ารักเกินต้าน 💘</p>
+  </div>
+
+  <div class="panel hidden" id="screen2">
+    <div class="pixel center">STAGE 01 / COLLECT HEARTS</div>
+    <h2>ด่านที่ 1: เก็บหัวใจ 💖</h2>
+    <p class="center">กดเก็บหัวใจให้ครบ 3 ดวง<br>เพื่อปลดล็อกข้อความลับ!</p>
+    <div class="hearts" id="hearts"><span class="heart">💗</span><span class="heart">💗</span><span class="heart">💗</span></div>
+    <div class="center"><button class="btn" id="collect" onclick="collectHeart()">เก็บหัวใจ +1 ✨</button></div>
+    <div class="progress"><div class="bar" id="bar2"></div></div>
+    <div id="stage1done" class="hidden center"><p>เย้! เก่งที่สุดเลยย 🎉</p><button class="btn mint" onclick="go(3)">ไปด่านต่อไป ➜</button></div>
+  </div>
+
+  <div class="panel hidden" id="screen3">
+    <div class="pixel center">STAGE 02 / HONEST TALK</div>
+    <h2>ด่านที่ 2: ข้อความจากใจ 💌</h2>
+    <p>ก่อนจะไปด่านสุดท้าย มีอะไรอยากบอกคนพิเศษก่อน...</p>
+    <div class="quest">🧸 <b>ภารกิจย่อย</b><br>อ่านข้อความนี้ให้จบ แล้วค่อยกดปุ่มด้านล่างนะะ</div>
+    <div class="letter">
+      <p>เอาล่ะ อ่านคำเตือนก่อนนะลูกพี่ 😤</p>
+      <p>คนทำเกมนี้อาจจะกวนประสาทนิดนึง แต่ตั้งใจง้อจริง ๆ นะ!</p>
+      <p>ถ้าพร้อมรับชมหลักฐานความน่ารัก (ของตัวเอง) ก็กดต่อได้เลยย</p>
+    </div>
+    <div class="btnrow"><button class="btn mint" onclick="go(4); confetti()">เปิดดูหลักฐาน 📸</button></div>
+  </div>
+
+
+  <div class="panel hidden" id="screen4">
+    <div class="pixel center">STAGE 03 / EVIDENCE FOUND</div>
+    <h2>ด่านที่ 3: หลักฐานคนหล่อ(?) 📸</h2>
+    <p class="center">อะแฮ่มมม ขออนุญาตนำเสนอภาพผู้ต้องสงสัย...</p>
+    <div class="photo-frame"><img src="1000006847.jpg" alt="รูปแฟนตอนกินข้าว คีบอาหารให้กล้อง" /></div>
+    <div class="quest">🔎 <b>รายงานจากทีมสืบสวน</b><br>พบผู้ชายใส่แว่น 1 อัตรา กำลังคีบอาหารโชว์กล้องอย่างมั่นใจ<br><b>ข้อกล่าวหา:</b> ทำให้คนถ่ายรูปคิดถึงหนักกว่าเดิม 😤💗</div>
+    <p class="center sub">หลักฐานชัดขนาดนี้... จะไม่ใจอ่อนจริงดิ๊ 555555</p>
+    <div class="btnrow"><button class="btn mint" onclick="go(5); confetti()">ไปอ่านคำสารภาพสุดท้าย ➜</button></div>
+  </div>
+
+  <div class="panel center hidden" id="screen5">
+    <div class="pixel">FINAL STAGE / PEACE?</div>
+    <div class="pixel-art"><span class="sprite">🐻</span> 💞 <span class="sprite">🐰</span></div>
+    <h2>ด่านสุดท้าย: คำสารภาพจากใจ 💌</h2>
+    <div class="letter left">
+      <p><b>ลูกพี่ไทเท~ เค้าส่งมาง้อนะะ 🥺💗</b></p>
+      <p>จะบอกว่า <b>ขอโต๊ดดด</b> คืนดีกันน้าา หายโกรธเค้าได้แย้ววว คิดถึงจะเเย่แล้ววว</p>
+      <p>ขอโทษที่ไม่ค่อยใส่ใจหรือทำอะไรให้พิเศษในวันสำคัญนะ เค้าจะตั้งใจกับความสัมพันธ์เรามากขึ้นนะะ</p>
+      <p>รักนะจุ๊บบบบบบ มั๊วะะะ 💋💞</p>
+    </div>
+    <p>อ่านจบแล้ว ลูกพี่ไทเท~ จะยอมรับคำง้อของเค้ามั้ยน้าา 🥹</p>
+    <div class="btnrow">
+      <button class="btn mint" onclick="accepted()">คืนดีกันก็ได้ 💗</button>
+      <button class="btn secondary" onclick="stillLove()">ขอคิดดูก่อน 🥺</button>
+    </div>
+    <p id="reply" class="hidden ending center"></p>
+  </div>
+  <p class="tiny">MADE WITH ♡ JUST FOR YOU · กดเปิดเสียงเพลงจากมือถือเองได้ตามใจเลย</p>
+</div>
+<script>
+let hearts=0;
+function go(n){for(let i=1;i<=5;i++)document.getElementById('screen'+i).classList.toggle('hidden',i!==n);window.scrollTo({top:0,behavior:'smooth'});if(n===2)document.getElementById('bar2').style.width=(hearts/3*100)+'%';}
+function startGame(){document.getElementById('bar1').style.width='100%';go(2);confetti();}
+function collectHeart(){if(hearts>=3)return;hearts++;document.querySelectorAll('.heart')[hearts-1].classList.add('on');document.getElementById('bar2').style.width=(hearts/3*100)+'%';confetti();if(hearts===3){document.getElementById('collect').classList.add('hidden');document.getElementById('stage1done').classList.remove('hidden');}}
+function confetti(){const emojis=['💗','💖','✨','💕','🌸','💘'];for(let i=0;i<13;i++){const el=document.createElement('span');el.className='float';el.textContent=emojis[Math.floor(Math.random()*emojis.length)];el.style.left=Math.random()*95+'vw';el.style.top=(45+Math.random()*45)+'vh';el.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),2800);}}
+function accepted(){const r=document.getElementById('reply');r.classList.remove('hidden');r.innerHTML='ภารกิจสำเร็จแล้ววว! 🏆💗<br>หัวใจสองดวงกลับมาอยู่ทีมเดียวกันแล้วนะ<br><b>รักลูกพี่ไทเทที่สุดดด มั๊วะะะ!</b>';confetti();}
+function stillLove(){const r=document.getElementById('reply');r.classList.remove('hidden');r.innerHTML='โอเคค้าบ เค้ารอได้ 🥺💗<br>ไม่เร่งน้า แค่อยากให้รู้ว่าเค้าแคร์และอยากปรับปรุงจริง ๆ';confetti();}
+</script>
+</body>
+</html>
